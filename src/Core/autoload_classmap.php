@@ -19,6 +19,8 @@ return array(
     'ClassDescriptor\\Core\\Descriptors\\MethodDescriptorInterface' => $baseDir . '/Core/Descriptors/MethodDescriptorInterface.php',
     'ClassDescriptor\\Core\\Descriptors\\PropertyDescriptor' => $baseDir . '/Core/Descriptors/PropertyDescriptor.php',
     'ClassDescriptor\\Core\\Descriptors\\PropertyDescriptorInterface' => $baseDir . '/Core/Descriptors/PropertyDescriptorInterface.php',
+    'ClassDescriptor\\Core\\Descriptors\\ParameterDescriptor' => $baseDir . '/Core/Descriptors/ParameterDescriptor.php',
+    'ClassDescriptor\\Core\\Descriptors\\ParameterDescriptorInterface' => $baseDir . '/Core/Descriptors/ParameterDescriptorInterface.php',
     'ClassDescriptor\\Core\\Descriptors\\TraitDescriptor' => $baseDir . '/Core/Descriptors/TraitDescriptor.php',
     'ClassDescriptor\\Core\\Descriptors\\TraitDescriptorInterface' => $baseDir . '/Core/Descriptors/TraitDescriptorInterface.php',
     'ClassDescriptor\\Core\\Descriptors\\Factory\\DescriptorFactoryInterface' => $baseDir . '/Core/Descriptors/Factory/DescriptorFactoryInterface.php',

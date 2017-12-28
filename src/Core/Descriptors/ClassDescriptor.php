@@ -10,19 +10,19 @@ namespace ClassDescriptor\Core\Descriptors;
 
 class ClassDescriptor extends AbstractStructureDescriptor implements ClassDescriptorInterface
 {
-    private $extend;
-    private $implements;
+    private $parent;
+    private $interfaces;
     private $constants;
     private $properties;
     private $traits;
     private $isAbstract;
 
-    public function __construct(string $name, string $nameSpace, bool $isAbstract, array $methods, string $extend, array $implements, array $constants, array $properties, array $traits)
+    public function __construct(string $name, string $nameSpace, array $methods, bool $isAbstract, ClassDescriptorInterface $parent = null, array $interfaces = [], array $constants = [], array $properties = [], array $traits = [])
     {
         parent::__construct($name, $nameSpace, $methods);
         $this->isAbstract = $isAbstract;
-        $this->extend = $extend;
-        $this->implements = $implements;
+        $this->parent = $parent;
+        $this->implements = $interfaces;
         $this->constants = $constants;
         $this->properties = $properties;
         $this->traits = $traits;
@@ -37,19 +37,35 @@ class ClassDescriptor extends AbstractStructureDescriptor implements ClassDescri
     }
 
     /**
-     * @return string
+     * @return ClassDescriptorInterface
      */
-    public function getExtend(): string
+    public function getParent(): ClassDescriptorInterface
     {
-        return $this->extend;
+        return $this->parent;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasParent(): bool
+    {
+        return $this->getParent() !== null;
     }
 
     /**
      * @return array
      */
-    public function getImplements(): array
+    public function getInterfaces(): array
     {
-        return $this->implements;
+        return $this->interfaces;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasInterfaces(): bool
+    {
+        return $this->getInterfaces() !== null && count($this->getInterfaces() > 0);
     }
 
     /**

@@ -11,5 +11,7 @@ namespace ClassDescriptor\Core\Descriptors;
 
 interface MethodDescriptorInterface extends InternalDescriptorInterface
 {
+    public function isAbstract(): bool;
+    public function isConstructor(): bool;
     public function getParameters(): array;
 }

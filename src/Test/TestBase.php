@@ -25,4 +25,9 @@ class TestBase extends \stdClass implements \Serializable, \Countable
     {
         // TODO: Implement count() method.
     }
+
+    public function go(int $pippo = 10)
+    {
+        return $pippo;
+    }
 }

@@ -12,8 +12,10 @@ namespace ClassDescriptor\Core\Descriptors;
 interface ClassDescriptorInterface extends StructureDescriptorInterface
 {
     public function isAbstract(): bool;
-    public function getExtend(): string;
-    public function getImplements(): array;
+    public function getParent(): ClassDescriptorInterface;
+    public function hasParent(): bool;
+    public function getInterfaces(): array;
+    public function hasInterfaces(): bool;
     public function getConstants(): array;
     public function getProperties(): array;
     public function getTraits(): array;

@@ -13,4 +13,5 @@ interface InternalDescriptorInterface extends BaseDescriptorInterface
 {
     public function getVisibility(): string;
     public function isStatic(): bool;
+    public function isFinal(): bool;
 }

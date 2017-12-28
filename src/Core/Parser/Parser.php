@@ -57,7 +57,7 @@ class Parser implements ParserInterface
             $descriptorName = "";
             $descriptorType = "";
             $extends = [];
-            $implements = [];
+            $interfaces = [];
             $gettingNamespace = false;
             $gettingDescriptorName = false;
             $gettingImplements = false;
@@ -111,7 +111,7 @@ class Parser implements ParserInterface
                             }
                             elseif ($gettingImplements === true)
                             {
-                                $implements[] = $token[1];
+                                $interfaces[] = $token[1];
                             }
                             break;
                         case "T_WHITESPACE":
@@ -155,7 +155,7 @@ class Parser implements ParserInterface
             include $this->path;
             $reflectionClass = new ReflectionClass($nameSpace."\\".$descriptorName);
 
-            DescriptorFactory::create($descriptorType, $reflectionClass);
+            $descriptor = DescriptorFactory::create($descriptorType, $reflectionClass);
 
 //            switch ($descriptorType)
 //            {
