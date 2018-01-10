@@ -9,6 +9,10 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Interface PropertyDescriptorInterface
+ * @package ClassDescriptor\Core\Descriptors
+ */
 interface PropertyDescriptorInterface extends InternalDescriptorInterface
 {
 

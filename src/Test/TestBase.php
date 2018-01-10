@@ -9,8 +9,17 @@
 namespace src\Test;
 
 
-class TestBase extends \stdClass implements \Serializable, \Countable
+use ClassDescriptor\Core\Parser\ParserException;
+
+class TestBase implements \Serializable, \Countable
 {
+    const PUH = "1";
+    const BAH = 5;
+
+    private $first = 1;
+    protected $second = "2";
+    public $third = true;
+
     public function serialize()
     {
         // TODO: Implement serialize() method.

@@ -9,7 +9,19 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Interface InterfaceDescriptorInterface
+ * @package ClassDescriptor\Core\Descriptors
+ */
 interface InterfaceDescriptorInterface extends StructureDescriptorInterface
 {
-    public function getExtends(): array;
+    /**
+     * @return bool
+     */
+    public function hasParents(): bool;
+
+    /**
+     * @return array
+     */
+    public function getParents(): array;
 }

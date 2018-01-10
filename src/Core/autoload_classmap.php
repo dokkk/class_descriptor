@@ -26,6 +26,8 @@ return array(
     'ClassDescriptor\\Core\\Descriptors\\Factory\\DescriptorFactoryInterface' => $baseDir . '/Core/Descriptors/Factory/DescriptorFactoryInterface.php',
     'ClassDescriptor\\Core\\Descriptors\\Factory\\DescriptorFactory' => $baseDir . '/Core/Descriptors/Factory/DescriptorFactory.php',
     'ClassDescriptor\\Core\\Descriptors\\Factory\\DescriptorFactoryException' => $baseDir . '/Core/Descriptors/Factory/DescriptorFactoryException.php',
+    'ClassDescriptor\\Core\\Utils\\Util' => $baseDir . '/Core/Utils/Util.php',
+    'ClassDescriptor\\Core\\Utils\\UtilInterface' => $baseDir . '/Core/Utils/UtilInterface.php',
     'ClassDescriptor\\Core\\Parser\\Parser' => $baseDir . '/Core/Parser/Parser.php',
     'ClassDescriptor\\Core\\Parser\\ParserInterface' => $baseDir . '/Core/Parser/ParserInterface.php',
     'ClassDescriptor\\Core\\Parser\\ParserException' => $baseDir . '/Core/Parser/ParserException.php',

@@ -9,7 +9,14 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Interface ConstantDescriptorInterface
+ * @package ClassDescriptor\Core\Descriptors
+ */
 interface ConstantDescriptorInterface extends BaseDescriptorInterface
 {
+    /**
+     * @return string
+     */
     public function getValue(): string;
 }

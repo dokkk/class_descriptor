@@ -12,11 +12,46 @@ use ClassDescriptor\Core\Descriptors\Factory\DescriptorFactory;
 use ClassDescriptor\Core\Descriptors\InterfaceDescriptor;
 use ReflectionClass;
 
+/**
+ * Class Parser
+ * @package ClassDescriptor\Core\Parser
+ */
 class Parser implements ParserInterface
 {
+    /**
+     * @const int
+     */
+    const ONLY_SELF = 0;
+
+    /**
+     * @const int
+     */
+    const SAME_LEVEL = 1;
+
+    /**
+     * @const int
+     */
+    const UPPER_LEVEL = 2;
+
+    /**
+     * @const int
+     */
+    const ALL = 3;
+
+    /**
+     * @var string
+     */
     private $path;
+    /**
+     * @var bool
+     */
     private $isFile;
 
+    /**
+     * Parser constructor.
+     * @param string $path
+     * @throws ParserException
+     */
     public function __construct(string $path)
     {
         $this->path = $path;
@@ -46,6 +81,11 @@ class Parser implements ParserInterface
         return $this->isFile;
     }
 
+    /**
+     * @param int $level
+     * @throws ParserException
+     * @throws \ClassDescriptor\Core\Descriptors\Factory\DescriptorFactoryException
+     */
     public function run(int $level = self::ONLY_SELF)
     {
 
@@ -180,6 +220,10 @@ class Parser implements ParserInterface
         }
     }
 
+    /**
+     * @param string $filePath
+     * @return array
+     */
     private function getTokens(string $filePath): array
     {
         return token_get_all(file_get_contents($filePath));

@@ -9,8 +9,20 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Interface BaseDescriptorInterface
+ * @package ClassDescriptor\Core\Descriptors
+ */
 interface BaseDescriptorInterface
 {
+    /**
+     * @return string
+     */
     public function getName(): string;
-    public function isEqual(BaseDescriptorInterface $baseDescriptor): bool;
+
+    /**
+     * @param BaseDescriptorInterface $baseDescriptor
+     * @return bool
+     */
+    public function isEqualTo(BaseDescriptorInterface $baseDescriptor): bool;
 }

@@ -11,12 +11,16 @@ namespace ClassDescriptor\Core\Descriptors\Factory;
 use ClassDescriptor\Core\Descriptors\BaseDescriptorInterface;
 use ReflectionClass;
 
+/**
+ * Interface DescriptorFactoryInterface
+ * @package ClassDescriptor\Core\Descriptors\Factory
+ */
 interface DescriptorFactoryInterface
 {
-    const INTERFACE_DESCRIPTOR = 0;
-    const CLASS_DESCRIPTOR = 1;
-    const TRAIT_DESCRIPTOR = 2;
-    const TYPES = [self::INTERFACE_DESCRIPTOR, self::CLASS_DESCRIPTOR, self::TRAIT_DESCRIPTOR];
-
-    public static function create(int $type, ReflectionClass $reflectionClass): BaseDescriptorInterface;
+    /**
+     * @param int $type
+     * @param ReflectionClass $reflector
+     * @return BaseDescriptorInterface
+     */
+    public static function create(int $type, ReflectionClass $reflector): BaseDescriptorInterface;
 }

@@ -9,9 +9,24 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Interface InternalDescriptorInterface
+ * @package ClassDescriptor\Core\Descriptors
+ */
 interface InternalDescriptorInterface extends BaseDescriptorInterface
 {
-    public function getVisibility(): string;
+    /**
+     * @return int
+     */
+    public function getVisibility(): int;
+
+    /**
+     * @return bool
+     */
     public function isStatic(): bool;
+
+    /**
+     * @return bool
+     */
     public function isFinal(): bool;
 }

@@ -8,6 +8,10 @@
 
 namespace ClassDescriptor\Core\Descriptors;
 
+/**
+ * Class PropertyDescriptor
+ * @package ClassDescriptor\Core\Descriptors
+ */
 class PropertyDescriptor extends AbstractInternalDescriptor implements PropertyDescriptorInterface
 {
 

@@ -9,6 +9,10 @@
 namespace ClassDescriptor\Core\Descriptors;
 
 
+/**
+ * Class TraitDescriptor
+ * @package ClassDescriptor\Core\Descriptors
+ */
 class TraitDescriptor extends AbstractBaseDescriptor implements TraitDescriptorInterface
 {
 

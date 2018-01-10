@@ -9,13 +9,20 @@
 namespace ClassDescriptor\Core\Parser;
 
 
+/**
+ * Interface ParserInterface
+ * @package ClassDescriptor\Core\Parser
+ */
 interface ParserInterface
 {
-    const ONLY_SELF = 0;
-    const SAME_LEVEL = 1;
-    const UPPER_LEVEL = 2;
-    const ALL = 3;
-
+    /**
+     * @return bool
+     */
     public function isFile(): bool;
+
+    /**
+     * @param int $level
+     * @return mixed
+     */
     public function run(int $level);
 }
