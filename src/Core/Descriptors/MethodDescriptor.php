@@ -8,6 +8,7 @@
 
 namespace ClassDescriptor\Core\Descriptors;
 
+use ReflectionMethod;
 
 /**
  * Class MethodDescriptor
@@ -31,19 +32,14 @@ class MethodDescriptor extends AbstractInternalDescriptor implements MethodDescr
     /**
      * MethodDescriptor constructor.
      * @param string $name
-     * @param int $visibility
-     * @param bool $isStatic
-     * @param bool $isFinal
-     * @param bool $isAbstract
-     * @param bool $isConstructor
-     * @param array $parameters
+     * @param ReflectionMethod $reflector
      */
-    public function __construct(string $name, int $visibility, bool $isStatic, bool $isFinal, bool $isAbstract, bool $isConstructor, array $parameters = [])
+    public function __construct(string $name, ReflectionMethod $reflector)
     {
-        parent::__construct($name, $visibility, $isStatic, $isFinal);
-        $this->isAbstract = $isAbstract;
-        $this->isConstructor = $isConstructor;
-        $this->parameters = $parameters;
+        parent::__construct($name, $reflector);
+        $this->isAbstract = $reflector->isAbstract();
+        $this->isConstructor = $reflector->isConstructor();
+        $this->parameters = null;
     }
 
     /**
@@ -63,10 +59,36 @@ class MethodDescriptor extends AbstractInternalDescriptor implements MethodDescr
     }
 
     /**
+     * @return bool
+     */
+    public function hasParameters(): bool
+    {
+        return count($this->getParameters() > 0);
+    }
+
+    /**
      * @return array
      */
     public function getParameters(): array
     {
+        if($this->parameters == null){
+            $this->parameters = $this->buildParametersDescriptors();
+        }
         return $this->parameters;
+    }
+
+    /**
+     * @return array
+     */
+    private function buildParametersDescriptors()
+    {
+        $parameters = [];
+        $reflectionParameters = $this->reflector->getParameters();
+        foreach ($reflectionParameters as $reflectionParameter)
+        {
+            $parameters[] = new ParameterDescriptor($reflectionParameter->getName(), $reflectionParameter);
+        }
+
+        return $parameters;
     }
 }

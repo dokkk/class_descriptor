@@ -8,8 +8,7 @@
 
 namespace ClassDescriptor\Core\Descriptors;
 
-
-use ReflectionClass;
+use Reflector;
 
 /**
  * Class AbstractBaseDescriptor
@@ -30,9 +29,9 @@ abstract class AbstractBaseDescriptor implements BaseDescriptorInterface
     /**
      * AbstractBaseDescriptor constructor.
      * @param string $name
-     * @param ReflectionClass $reflector
+     * @param Reflector $reflector
      */
-    public function __construct(string $name, ReflectionClass $reflector)
+    public function __construct(string $name, Reflector $reflector)
     {
         $this->name = $name;
         $this->reflector = $reflector;
@@ -53,7 +52,7 @@ abstract class AbstractBaseDescriptor implements BaseDescriptorInterface
     public function isEqualTo(BaseDescriptorInterface $baseDescriptor): bool
     {
         return(
-            //check strictly instanceof -> is_a ?
+            //TO DO check strictly instanceof -> is_a ?
             $this instanceof $baseDescriptor &&
             $this->getName() === $baseDescriptor->getName()
         );

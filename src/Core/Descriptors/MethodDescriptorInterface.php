@@ -26,6 +26,11 @@ interface MethodDescriptorInterface extends InternalDescriptorInterface
     public function isConstructor(): bool;
 
     /**
+     * @return bool
+     */
+    public function hasParameters(): bool;
+
+    /**
      * @return array
      */
     public function getParameters(): array;

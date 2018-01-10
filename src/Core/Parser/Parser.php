@@ -106,7 +106,6 @@ class Parser implements ParserInterface
             foreach ($tokens as $token) {
                 if (is_array($token)) {
                     $tokenName = token_name($token[0]);
-                    //echo $tokenName, PHP_EOL;
                     switch ($tokenName)
                     {
                         case "T_NAMESPACE":
@@ -188,31 +187,15 @@ class Parser implements ParserInterface
                     }
                 }
             }
-            echo "nameSpace= ".$nameSpace, PHP_EOL;
-            echo "descriptorName: ".$descriptorName, PHP_EOL;
-            //var_dump($extends);
 
+            //TO DO include external path
             include $this->path;
             $reflectionClass = new ReflectionClass($nameSpace."\\".$descriptorName);
 
             $descriptor = DescriptorFactory::create($descriptorType, $reflectionClass);
+            //TO DO assign to class var and use another method to get it?
+            return $descriptor;
 
-//            switch ($descriptorType)
-//            {
-//                case DescriptorFactory::INTERFACE_DESCRIPTOR:
-//                    $interfaces = $reflectionClass->getInterfaces();
-//                    //$descriptor = new InterfaceDescriptor("descriptorName", "nameSpace");
-//                    break;
-//                case DescriptorFactory::CLASS_DESCRIPTOR:
-//                    $interfaces = $reflectionClass->getInterfaces();
-//                    $parent = $reflectionClass->getParentClass();
-//                    var_dump($interfaces);
-//                    //$descriptor = new InterfaceDescriptor("descriptorName", "nameSpace");
-//                    break;
-//                case DescriptorFactory::TRAIT_DESCRIPTOR:
-//                    //$descriptor = new InterfaceDescriptor("descriptorName", "nameSpace");
-//                    break;
-//            }
         }
         else
         {

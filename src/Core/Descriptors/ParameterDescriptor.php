@@ -8,7 +8,7 @@
 
 namespace ClassDescriptor\Core\Descriptors;
 
-
+use ReflectionParameter;
 /**
  * Class ParameterDescriptor
  * @package ClassDescriptor\Core\Descriptors
@@ -27,14 +27,24 @@ class ParameterDescriptor extends AbstractBaseDescriptor implements ParameterDes
     /**
      * ParameterDescriptor constructor.
      * @param string $name
-     * @param string|null $type
-     * @param string|null $defaultValue
+     * @param ReflectionParameter $reflector
      */
-    public function __construct(string $name, string $type = null, string $defaultValue = null)
+    public function __construct(string $name, ReflectionParameter $reflector)
     {
-        parent::__construct($name);
-        $this->type = $type;
-        $this->defaultValue = $defaultValue;
+        parent::__construct($name, $reflector);
+
+        $this->type = "";
+        if($reflector->getClass() !== null){
+            $this->type = $reflector->getClass()->getShortName();
+        }
+        elseif($reflector->hasType()){
+            $this->type = $reflector->getType();
+        }
+
+        $this->defaultValue = null;
+        if($reflector->isDefaultValueAvailable()){
+            $this->defaultValue = var_export($reflector->getDefaultValue(), true);// === null ? "null" : $reflector->getDefaultValue();
+        }
     }
 
     /**
@@ -50,7 +60,7 @@ class ParameterDescriptor extends AbstractBaseDescriptor implements ParameterDes
      */
     public function isClass(): bool
     {
-        return is_object($this->getType());
+        return is_object($this->reflector->getClass());
     }
 
     /**
@@ -58,16 +68,14 @@ class ParameterDescriptor extends AbstractBaseDescriptor implements ParameterDes
      */
     public function hasDefaultValue(): bool
     {
-        //TO DO
-        return false;
+        return $this->getDefaultValue() !== null;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getDefaultValue(): string
+    public function getDefaultValue()
     {
-        //TO DO manage not existing default value with exception?
         return $this->defaultValue;
     }
 }

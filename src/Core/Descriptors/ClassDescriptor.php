@@ -181,8 +181,7 @@ class ClassDescriptor extends AbstractStructureDescriptor implements ClassDescri
             $interfaces[] = new InterfaceDescriptor(
                 $reflectionInterface->getName(),
                 $reflectionInterface->getNamespaceName(),
-                $reflectionInterface->getMethods(),
-                $reflectionInterface->getInterfaces()
+                $reflectionInterface
             );
         }
         return $interfaces;

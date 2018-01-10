@@ -89,53 +89,8 @@ abstract class AbstractStructureDescriptor extends AbstractBaseDescriptor implem
 
         foreach ($reflectionMethods as $reflectionMethod)
         {
-            $visibility = AbstractInternalDescriptor::PRIVATE;
-            if ($reflectionMethod->isProtected()) {
-                $visibility = AbstractInternalDescriptor::PROTECTED;
-            }
-            elseif ($reflectionMethod->isPublic()) {
-                $visibility = AbstractInternalDescriptor::PUBLIC;
-            }
-
-            $methods[] = new MethodDescriptor(
-                $reflectionMethod->getName(),
-                $visibility,
-                $reflectionMethod->isStatic(),
-                $reflectionMethod->isFinal(),
-                $reflectionMethod->isAbstract(),
-                $reflectionMethod->isConstructor(),
-                $this->buildParametersDescriptors($reflectionMethod->getParameters())
-            );
+            $methods[] = new MethodDescriptor($reflectionMethod->getName(), $reflectionMethod);
         }
         return $methods;
-    }
-
-    /**
-     * @param array $reflectionParameters
-     * @return array
-     */
-    private function buildParametersDescriptors(array $reflectionParameters)
-    {
-        $parameters = [];
-        foreach ($reflectionParameters as $reflectionParameter)
-        {
-            $defaultValue = null;
-            if($reflectionParameter->isDefaultValueAvailable()){
-                $defaultValue = $reflectionParameter->getDefaultValue();
-            }
-
-            $type = null;
-            if($reflectionParameter->hasType()){
-                $type = $reflectionParameter->getType()->__toString();
-            }
-
-            $parameters[] = new ParameterDescriptor(
-                $reflectionParameter->getName(),
-                $type,
-                $defaultValue
-            );
-        }
-
-        return $parameters;
     }
 }

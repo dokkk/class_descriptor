@@ -8,7 +8,7 @@
 
 namespace ClassDescriptor\Core\Descriptors;
 
-
+use Reflector;
 /**
  * Class AbstractInternalDescriptor
  * @package ClassDescriptor\Core\Descriptors
@@ -53,21 +53,22 @@ abstract class AbstractInternalDescriptor extends AbstractBaseDescriptor impleme
     /**
      * AbstractInternalDescriptor constructor.
      * @param string $name
-     * @param int $visibility
-     * @param bool $isStatic
-     * @param bool $isFinal
+     * @param ReflectionClass $reflector
      */
-    public function __construct(string $name, int $visibility, bool $isStatic, bool $isFinal)
+    public function __construct(string $name, Reflector $reflector)
     {
-        if(in_array($visibility, self::VISIBILITIES)) {
-            parent::__construct($name);
-            $this->isStatic = $isStatic;
-            $this->isFinal = $isFinal;
-        }
-        else {
-            throw new DescriptorFactoryException("Visibility must be one of ".implode(",", self::VISIBILITIES));
-        }
+        parent::__construct($name, $reflector);
 
+        $visibility = AbstractInternalDescriptor::PRIVATE;
+        if ($reflector->isProtected()) {
+            $visibility = AbstractInternalDescriptor::PROTECTED;
+        }
+        elseif ($reflector->isPublic()) {
+            $visibility = AbstractInternalDescriptor::PUBLIC;
+        }
+        $this->visibility = $visibility;
+        $this->isStatic = $reflector->isStatic();
+        $this->isFinal = $reflector->isFinal();
     }
 
     /**

@@ -59,21 +59,20 @@ class DescriptorFactory implements DescriptorFactoryInterface
         if(in_array($type, self::TYPES, true))
         {
             $name = $reflector->getShortName();
-            echo "name::::: ".$name, PHP_EOL;
             $nameSpace = $reflector->getNamespaceName();
 
             switch ($type)
             {
                 case self::INTERFACE_DESCRIPTOR:
-
                     $baseDescriptorInterface = new InterfaceDescriptor($name, $nameSpace, $reflector);
                     break;
-                case self::CLASS_DESCRIPTOR:
 
+                case self::CLASS_DESCRIPTOR:
                     $baseDescriptorInterface = new ClassDescriptor($name, $nameSpace, $reflector);
                     break;
+
                 case self::TRAIT_DESCRIPTOR:
-                    $baseDescriptorInterface = new TraitDescriptor($name);
+                    $baseDescriptorInterface = new TraitDescriptor($name, $reflector);
                     break;
             }
         }

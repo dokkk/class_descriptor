@@ -33,5 +33,6 @@ interface ParameterDescriptorInterface extends BaseDescriptorInterface
     /**
      * @return string
      */
-    public function getDefaultValue(): string;
+    //TO DO return string in next PHP version
+    public function getDefaultValue();
 }
